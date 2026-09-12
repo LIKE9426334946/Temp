@@ -1,0 +1,21 @@
+# 数据位置：data_root 下面应当有 VOCdevkit/VOC2012。
+# 相对路径以本 config.yaml 所在目录为起点。
+data_root: ./data
+download: true              # 首次自动下载；已有数据时可改成 false
+image_size: [256, 256]       # [高度, 宽度]
+val_ratio: 0.1              # 从官方 train 中划出 10% 做内部验证
+
+# VOC 固定为 21 类：0 是背景，1~20 是物体；255 是忽略区域。
+num_classes: 21
+ignore_index: 255
+base_channels: 32          # 小型 U-Net 的起始通道数
+
+batch_size: 8
+epochs: 30
+learning_rate: 0.001
+num_workers: 0             # Windows / Notebook 先用 0，Linux 可尝试 2 或 4
+seed: 42
+device: auto               # auto / cpu / cuda / cuda:0
+
+output_dir: ./outputs
+num_visualizations: 6      # 测试后保存多少张对比图
